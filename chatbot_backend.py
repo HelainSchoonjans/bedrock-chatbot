@@ -17,14 +17,14 @@ def chat_model():
     )
     return model
 #3 Create a Function for ConversationBufferMemory (llm and max token limit)
-def conversation_memory():
-    memory = ConversationSummaryBufferMemory(
+def memory():
+    conversation_memory = ConversationSummaryBufferMemory(
         llm=chat_model(),
         max_token_limit=1000
     )
-    return memory
+    return conversation_memory
 #4 Create a Function for Conversation Chain - Input text + Memory
-def conversation_chain(input_text, memory):
+def converse(input_text, memory):
     conversation_chain=ConversationChain(
         llm=chat_model(),
         memory=memory,
@@ -36,4 +36,3 @@ def conversation_chain(input_text, memory):
 #Links :
 #https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-call.html
 #https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html
-#https://docs.aws.amazon.com/bedrock/latest/userguide/conversation-inference-call.htm
