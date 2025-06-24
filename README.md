@@ -12,3 +12,5 @@ A chatbot using langchain and bedrock coming from the [Bedrock AWS GenAi Udemy c
 Run the app with
 
     streamlit run chatbot_frontend.py
+
+![Chatbot usage](chatbot.png)
