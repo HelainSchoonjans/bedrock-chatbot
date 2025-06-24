@@ -7,13 +7,12 @@ from langchain_aws import ChatBedrockConverse
 def demo_chatbot(messages):
     demo_llm = ChatBedrockConverse(
         credentials_profile_name='default',
-        # uses the arn to specify the region explicitely
-        # might require to adapt the SCPs: https://aws.amazon.com/blogs/machine-learning/enable-amazon-bedrock-cross-region-inference-in-multi-account-environments/
-        model="arn:aws:bedrock:eu-west-1:658245006896:inference-profile/eu.amazon.nova-micro-v1:0",
-        #model="amazon.nova-micro-v1:0",
+        # cross-region models might require to adapt the SCPs: https://aws.amazon.com/blogs/machine-learning/enable-amazon-bedrock-cross-region-inference-in-multi-account-environments/
+        # here I'm using a single region alternative
+        model="amazon.titan-text-lite-v1", 
         provider='amazon',
         temperature=0.1,
-        region_name='eu-west-1',
+        region_name="eu-west-1", 
         max_tokens=1000
     )
     return demo_llm.invoke(messages)
