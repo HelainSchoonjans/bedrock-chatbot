@@ -24,10 +24,23 @@ def memory():
     )
     return conversation_memory
 #4 Create a Function for Conversation Chain - Input text + Memory
+# NEW: Define a clearer, more direct prompt template
+from langchain_core.prompts import PromptTemplate
+_template = """
+Answer to the latest Human input as the AI, without simulating further rounds of conversation.
+
+Current conversation:
+{history}
+Human: {input}
+AI:"""
+PROMPT = PromptTemplate(input_variables=["history", "input"], template=_template)
+
+# Using smarter models might result in better responses
 def converse(input_text, memory):
     conversation_chain=ConversationChain(
         llm=chat_model(),
         memory=memory,
+        prompt=PROMPT,
         verbose=True
     )
     #5 Chat response using invoke (Prompt template)
